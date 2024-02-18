@@ -1,5 +1,6 @@
 import json
 import os
+import warnings
 
 OUTPUT_DIR = "data/"
 
@@ -24,6 +25,8 @@ class Milestone:
     def __init__(self, config: MilestoneConfig):
         self.config = config
         self.isFulfilled = False
+        self.review = None
+        self.rating = None
 
     def adjustDescription(self,newDesc):
         self.config.description = newDesc
@@ -43,6 +46,22 @@ class Milestone:
             "description": self.config.description,
             "isFulfilled": self.isFulfilled
         }
+    
+    def submitReview(self,rating: int, review:str = None):
+        """
+        Submit a review for the milestone
+
+        :param rating: int, the rating of the milestone (1-5)
+        :param review: str, the review of the milestone
+        :return: None
+        """
+
+        if rating < 1 or rating > 5:
+            raise Exception("Invalid rating")
+        self.rating = rating
+        self.review = review
+
+        return
 
 
 class Project:
@@ -107,6 +126,8 @@ class Project:
         return result
 
     def markFulfilled(self):
+        if self.percentComplete != 100:
+            warnings.warn("One or more milestones are incomplete. This project will still be marked as complete", UserWarning)
         self.isFulfilled = True        
 
         
