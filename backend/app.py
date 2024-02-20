@@ -1,7 +1,10 @@
 from flask import Flask, request,jsonify
+from flask_cors import CORS
 from .Project import Project
 import json
+
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def hello_world():
@@ -12,8 +15,8 @@ def handle_post():
     data = request.get_json()
     print(f"data is {data} and {type(data)}")
     newProj = Project(data)
-    print(f"{newProj}")
-    return "<h1>Hiiii</h1>"
+    newProj.post()
+    return "<h1>Successfully posted</h1>"
 
 @app.get("/projects/<projectname>")
 def handle_get_proj(projectname):
