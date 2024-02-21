@@ -38,6 +38,15 @@ def handle_get_milestone(milestonename):
         return "<h1>Error 404: response not found </h1>"
     return jsonify(mData)
 
+@app.get("/projects")
+def handle_get_all():
+    try: 
+        with open(f"../data/projlist.json","r") as file:
+            allData = json.load(file)
+    except:
+        return "<h1>Error 404: Response not found</h1>"
+    return jsonify(allData)
+
 @app.route("/sendFile",methods=["POST"])
 def handle_file_upload():
     print("helloooooooo")

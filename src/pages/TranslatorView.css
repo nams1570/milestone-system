@@ -1,0 +1,29 @@
+.project-card{
+background-color: rgb(255, 255, 255);
+border: transparent;
+font-size: large;
+border-bottom: 1px solid rgb(173, 172, 172);
+}
+.project-card:hover{
+    cursor:pointer;
+    background-color: rgb(165, 169, 171);
+}
+.translator-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: large;
+}
+.portrait{
+    width:120px;
+    height:120px;
+    background-image: url("../../public/profile-pic.png");
+    background-size: cover;
+}
+.profile-box{
+    align-items: center;
+}
+
+.proj-render{
+
+    border:2px solid green;
+}

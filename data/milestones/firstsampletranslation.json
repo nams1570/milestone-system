@@ -1,7 +1,7 @@
 {
   "description": "Translate the first page of the article",
   "funds": 20,
-  "isFulfilled": false,
+  "isFulfilled": true,
   "name": "First Sample Translation",
   "time": 2
 }

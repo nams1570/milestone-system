@@ -3,7 +3,7 @@ import './App.css';
 import Project from './pages/ProjectView'
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Milestone from './pages/MilestoneView';
-
+import Translator from './pages/TranslatorView';
 function App() {
   return (
     <BrowserRouter>
@@ -17,7 +17,10 @@ function App() {
       <Routes>
         <Route path="/milestones/:milestonename" element={<Milestone/>}>
         </Route>
-        <Route path="/" element ={<Project projectname="translationproject"/>}>
+        <Route path="/projects/:projectname" element ={<Project/>}>
+        </Route>
+        <Route path="/" element = {<Translator/>}>
+
         </Route>
         </Routes>
     </BrowserRouter>

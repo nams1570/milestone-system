@@ -1,11 +1,12 @@
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 import './ProjectView.css'
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useParams} from 'react-router-dom';
 
-export default function Project({projectname})
+export default function Project()
 {
     //axios request to backend to get proj data
+    let {projectname} = useParams();
     const [proj,setProj] = useState({})
 
     useEffect(()=>{
