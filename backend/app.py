@@ -28,4 +28,11 @@ def handle_get_proj(projectname):
         return "<h1>Error 404: response not found </h1>"
     return jsonify(projData)
     
-
+@app.get("/milestones/<milestonename>")
+def handle_get_milestone(milestonename):
+    try:
+        with open(f"../data/milestones/{milestonename}.json","r") as file:
+            mData = json.load(file)
+    except:
+        return "<h1>Error 404: response not found </h1>"
+    return jsonify(mData)

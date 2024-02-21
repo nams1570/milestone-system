@@ -1,5 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
+import './ProjectView.css'
+
 
 export default function Project({projectname})
 {
@@ -23,21 +25,19 @@ export default function Project({projectname})
 function AllMilestones({milestones})
 {
     return (
-        <div className='allMilestones-display'>
+        <div className='all-milestones-display'>
 
                 {milestones && milestones.map((milestone)=>
-                    <Milestone milestone={milestone}></Milestone>
+                    <MilestoneCard milestone={milestone}></MilestoneCard>
                 )}
         </div>
     )
 }
-function Milestone({milestone})
+function MilestoneCard({milestone})
 {
     return (
         <div className='milestone-container'>
             <div className='milestone-name'>{milestone.name}</div>
-            <div className='milestone-fulfilment'>{milestone.isFulfilled}</div>
-            <div className='milestone-description'>{milestone.description}</div>
         </div>
     )
 }

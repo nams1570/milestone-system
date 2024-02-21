@@ -1,0 +1,27 @@
+.all-milestones-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.milestone-container {
+    position: relative;
+    width: 0;
+    height: 40;
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-bottom: 120px solid #3498db; /* Set the background color for the triangle */
+    margin: 10px; /* Adjust margin as needed */
+    text-align: center;
+    color: #fff; /* Set text color */
+    font-size: 14px; /* Set font size */
+}
+
+.milestone-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    color: #0a320d; /* Set text color */
+    font-size: 18px; /* Set font size */
+}
