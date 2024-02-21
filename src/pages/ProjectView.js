@@ -1,12 +1,13 @@
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 import './ProjectView.css'
-
+import {useNavigate} from 'react-router-dom';
 
 export default function Project({projectname})
 {
     //axios request to backend to get proj data
     const [proj,setProj] = useState({})
+
     useEffect(()=>{
         axios.get(`http://localhost:5000/projects/${projectname}`,{headers:{'Access-Control-Allow-Origin': true}}).then(response=>{
             //unpack response.data's json into an object
@@ -24,20 +25,26 @@ export default function Project({projectname})
 
 function AllMilestones({milestones})
 {
+    const navigate = useNavigate();
+
+    function handleClick(milestonename)
+    {
+        navigate(`/milestones/${milestonename.replaceAll(' ','').toLowerCase()}`)
+    }
     return (
         <div className='all-milestones-display'>
 
                 {milestones && milestones.map((milestone)=>
-                    <MilestoneCard milestone={milestone}></MilestoneCard>
+                    <MilestoneCard onClick={()=>handleClick(milestone.name)} milestone={milestone}></MilestoneCard>
                 )}
         </div>
     )
 }
-function MilestoneCard({milestone})
+function MilestoneCard({onClick, milestone})
 {
     return (
-        <div className='milestone-container'>
+        <button className='milestone-container' onClick={onClick}>
             <div className='milestone-name'>{milestone.name}</div>
-        </div>
+        </button>
     )
 }
