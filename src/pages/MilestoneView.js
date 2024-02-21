@@ -12,13 +12,14 @@ export default function Milestone(){
                 }).catch(error=>{console.error(error)})
 
             },)
-
+    const isDisplay = milestone.isFulfilled;
+    console.log(isDisplay)
     return (<div className='milestone'>
         <h1 className='new-name'>{milestone.name}</h1>
         <div>Time Allotted: {milestone.time}</div>
         <div>Payout: ${milestone.funds}</div>
         <div>{milestone.description}</div>
-        <SingleFileUploader milestone={milestone}/>
+        {isDisplay?<h1>Submitted! Congratulations</h1> :<SingleFileUploader milestone={milestone}/>}
         </div>);
 };
 
@@ -33,7 +34,6 @@ function SingleFileUploader(milestone){
         }
     }
     const handleUpload = async () => {
-        // We will fill this out later
         if (file) {
             console.log("Uploading file...");
             setStatus("uploading");
