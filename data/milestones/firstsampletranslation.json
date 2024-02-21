@@ -1,7 +1,7 @@
 {
-   "name": "First Sample Translation",
-   "time": 2,
-   "funds": 20.0,
-   "description": "Translate the first page of the article",
-   "isFulfilled": false
+  "description": "Translate the first page of the article",
+  "funds": 20,
+  "isFulfilled": false,
+  "name": "First Sample Translation",
+  "time": 2
 }

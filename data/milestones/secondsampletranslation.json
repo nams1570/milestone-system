@@ -1,7 +1,7 @@
 {
-   "name": "Second Sample Translation",
-   "time": 4,
-   "funds": 30.0,
-   "description": "Translate the first half of the article",
-   "isFulfilled": false
+  "description": "Translate the first half of the article",
+  "funds": 30,
+  "isFulfilled": true,
+  "name": "Second Sample Translation",
+  "time": 4
 }

@@ -7,6 +7,13 @@ import Milestone from './pages/MilestoneView';
 function App() {
   return (
     <BrowserRouter>
+    <div className='top-bar'>
+          <div className='logo-image'></div>
+        <div className='login-and-signup'>
+          <button className='login'>Log In</button>
+          <button className='signup'>Sign Up</button>
+        </div>
+    </div>
       <Routes>
         <Route path="/milestones/:milestonename" element={<Milestone/>}>
         </Route>

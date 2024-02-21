@@ -1,7 +1,8 @@
-from flask import Flask, request,jsonify
+from flask import Flask, request, Response, jsonify
 from flask_cors import CORS
 from .Project import Project
 import json
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -36,3 +37,32 @@ def handle_get_milestone(milestonename):
     except:
         return "<h1>Error 404: response not found </h1>"
     return jsonify(mData)
+
+@app.route("/sendFile",methods=["POST"])
+def handle_file_upload():
+    print("helloooooooo")
+    uploaded_file = request.files["file"]
+    if uploaded_file and not os.path.exists(os.path.join("../data",uploaded_file.filename)):
+        uploaded_file.save(os.path.join("../data",uploaded_file.filename))
+        
+    else:
+        return jsonify({"success":False})
+    return jsonify({"success":True})
+
+@app.put("/milestones/success")
+def handle_success_update():
+    try:
+        data = request.get_json()['milestone']
+        print(f"data is {data} ")
+        milestonename = data['name'].replace(' ','').lower()
+        print(f"and {os.path.exists(f'../data/milestones/{milestonename}.json')}")
+            # Update data
+        data['isFulfilled'] = True
+
+            # Write back to JSON file
+        with open(f'../data/milestones/{milestonename}.json', 'w') as file:
+            json.dump(data, file, indent=2)
+        return jsonify({"success":True})
+    except:
+        raise Exception("Issue")
+        return jsonify({"success":False})

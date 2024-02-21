@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
-}
+.login-and-signup{
+  left:80%;
+  position: relative;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.signup{
+  border-radius: 15px;
+  height:40px;
+  width:80px;
+  background-color: green;
+  border:transparent;
+  color:white
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo-image{
+  background-image: url('downwork.jpg');
+  background-size:cover;
+  width:80px;
+  height:40px;
+  position:static;
+}
+.login{
+  border:transparent;
+  color:black;
+  height:40px;
+  width:80px;
+  background-color: transparent;
+}
+.login:hover{
+  cursor: pointer;
+  background-color: rgb(186, 182, 182);
+}
+.signup:hover{
+  cursor: pointer;
+  background-color: rgb(4, 96, 4);
+}
+.top-bar{
+  border-bottom: 1px solid rgb(173, 169, 169);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
