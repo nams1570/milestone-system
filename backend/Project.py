@@ -1,8 +1,8 @@
 import json
 import os
 
-OUTPUT_DIR = "data/"
-
+OUTPUT_DIR = "../data/"
+MILESTONES_DIR = "milestones/"
 class MilestoneConfig:
     def __init__(self,name:str, time:int, funds:float, description:str):
         self.name = name
@@ -35,6 +35,22 @@ class Milestone:
         result = f"{self.config}, isFulfilled: {self.isFulfilled}"
         return result
     
+    def post(self):
+        """
+        Save the milestone to a json file in OUTPUT_DIR
+
+        :return: str, json dict
+        """
+        json_data = self.to_json()
+        file_name = self.config.name.replace(" ", "").lower()
+        output_dir = OUTPUT_DIR + MILESTONES_DIR + file_name + ".json"
+
+        if os.path.exists(output_dir):
+            raise Exception("Milestone already exists")
+        with open(OUTPUT_DIR + MILESTONES_DIR + file_name + ".json", 'w') as file:
+            file.write(json_data)
+        return json_data
+
     def toDict(self):
         return {
             "name": self.config.name,
@@ -43,6 +59,8 @@ class Milestone:
             "description": self.config.description,
             "isFulfilled": self.isFulfilled
         }
+    def to_json(self):
+        return json.dumps(self.toDict(),indent=3)
 
 
 class Project:
@@ -79,8 +97,13 @@ class Project:
 
         if os.path.exists(output_dir):
             raise Exception("Project already exists")
+        
         with open(OUTPUT_DIR + file_name + ".json", 'w') as file:
             file.write(json_data)
+
+        for milestone in self.milestones:
+            milestone.post()
+
         return json_data
 
     def to_json(self):

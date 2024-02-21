@@ -1,0 +1,41 @@
+.login-and-signup{
+  left:80%;
+  position: relative;
+
+}
+.signup{
+  border-radius: 15px;
+  height:40px;
+  width:80px;
+  background-color: green;
+  border:transparent;
+  color:white
+}
+.logo-image{
+  background-image: url('downwork.jpg');
+  background-size:cover;
+  width:80px;
+  height:40px;
+  position:static;
+}
+.login{
+  border:transparent;
+  color:black;
+  height:40px;
+  width:80px;
+  background-color: transparent;
+}
+.login:hover{
+  cursor: pointer;
+  background-color: rgb(186, 182, 182);
+}
+.signup:hover{
+  cursor: pointer;
+  background-color: rgb(4, 96, 4);
+}
+.top-bar{
+  border-bottom: 1px solid rgb(173, 169, 169);
+  display: flex;
+  align-items: center;
+
+}

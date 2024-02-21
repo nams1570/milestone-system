@@ -1,0 +1,10 @@
+.milestone{
+    font-size: large;
+    translate: (-50%,-50%);
+    height:100%;
+    border:2px solid green;
+    margin:20px;
+}
+.new-name{
+    
+}
