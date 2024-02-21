@@ -7,17 +7,19 @@ from Project import *
 
 def main():
     # Create Milestone Configs
-    cfg1 = MilestoneConfig("First Sample Translation", 2, 20.00, "Translate the first page of the article")
-    cfg2 = MilestoneConfig("Second Sample Translation", 4, 30.00, "Translate the first half of the article")
-    cfg3 = MilestoneConfig("Third Sample Translation", 4, 50.00, "Translate the last half of the article")
+    cfg1 = MilestoneConfig("Translate Terms", 2, 20.00, "Translate terms and conditions")
+    cfg2 = MilestoneConfig("Outline", 4, 30.00, "Outline rest of goals")
+    cfg3 = MilestoneConfig("Third look", 4, 50.00, "Translate the last half of the article")
+    cfg4 = MilestoneConfig("Wrap up",12,35,"Wrap up the rest of the system")
 
     milestones = list()
     milestones.append(cfg1)
     milestones.append(cfg2)
     milestones.append(cfg3)
+    milestones.append(cfg4)
 
     # Create Project
-    proj = Project("Translation Project", milestones, "Translate a relic article in old Latin into English")
+    proj = Project("Rosetta Stone", milestones, "Translate a relic article in old Latin into English")
 
     # Print Project as JSON
     print(proj.to_json())

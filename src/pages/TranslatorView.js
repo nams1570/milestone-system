@@ -17,7 +17,7 @@ export default function Translator()
             </div>
             John Doe
         </div>
-        <AllProjects className='proj-render' allProj={allProj}></AllProjects>
+        <AllProjects allProj={allProj}></AllProjects>
     </div>);
 }
 
@@ -29,11 +29,14 @@ function AllProjects({allProj})
     {
         navigate(`/projects/${projname.replaceAll(' ','').toLowerCase()}`)
     }
-    return (<>
+    return (<div className='proj-render'>
+        <div className='proj-render-text'>
+            Current Projects:
+        </div>
         {allProj && allProj.map((projname,index)=>
         <ProjectCard key={index} onClick={()=>handleClick(projname)} projname={projname}></ProjectCard>
         )}
-    </>);
+    </div>);
 }
 function ProjectCard({onClick,projname})
 {
