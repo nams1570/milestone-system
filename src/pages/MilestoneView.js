@@ -24,9 +24,11 @@ export default function Milestone(){
 
 function SingleFileUploader(milestone){
     const [file, setFile] = useState(null);
+    const [status,setStatus] = useState("initial")
     const handleFileChange = (e) =>{
         if(e.target.files)
         {
+            setStatus("initial");
             setFile(e.target.files[0]);
         }
     }
@@ -34,7 +36,7 @@ function SingleFileUploader(milestone){
         // We will fill this out later
         if (file) {
             console.log("Uploading file...");
-        
+            setStatus("uploading");
             const formData = new FormData();
             formData.append("file", file);
         
@@ -49,13 +51,17 @@ function SingleFileUploader(milestone){
               if(data.success)
               {
                 const putResult = await axios.put(`http://localhost:5000/milestones/success`,milestone,{
-                    
                 })
+                setStatus("success")
+              }
+              else{
+                setStatus("fail");
               }
 
               console.log(data);
             } catch (error) {
               console.error(error);
+              setStatus("fail");
             }
           }
       };
@@ -77,6 +83,19 @@ function SingleFileUploader(milestone){
             </section>
       )}
         {file && <button onClick={handleUpload}>Upload a file</button>}
+        <Result status={status}></Result>
         </>
     );
 }
+
+function Result({ status }){
+    if (status === "success") {
+      return <p>✅ File uploaded successfully!</p>;
+    } else if (status === "fail") {
+      return <p>❌ File upload failed!</p>;
+    } else if (status === "uploading") {
+      return <p>⏳ Uploading selected file...</p>;
+    } else {
+      return null;
+    }
+  };
