@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -13,10 +14,10 @@ export default function Translator()
     })
     return (<div className='translator-container'>
         <div className='profile-box'>
-            <div className='portrait-translator'>
+            <div className='portrait-client'>
             </div>
-            <p>John Doe</p>
-            <p>Freelancer</p>
+            <p>Arthur Morgan</p>
+            <p>Client</p>
         </div>
         <AllProjects allProj={allProj}></AllProjects>
     </div>);
@@ -28,7 +29,7 @@ function AllProjects({allProj})
 
     function handleClick(projname)
     {
-        navigate(`/translator/projects/${projname.replaceAll(' ','').toLowerCase()}`)
+        navigate(`/client/projects/${projname.replaceAll(' ','').toLowerCase()}`)
     }
     return (<div className='proj-render'>
         <div className='proj-render-text'>

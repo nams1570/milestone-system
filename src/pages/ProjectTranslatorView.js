@@ -3,7 +3,7 @@ import axios from 'axios';
 import './ProjectView.css'
 import {useNavigate,useParams} from 'react-router-dom';
 
-export default function Project()
+export default function ProjectTranslator()
 {
     //axios request to backend to get proj data
     let {projectname} = useParams();
@@ -18,6 +18,7 @@ export default function Project()
     return (
         <div>
             <h1>{proj.name}</h1>
+            <p>Freelancer</p>
             <p>{proj.isFulfilled}</p>
             <AllMilestones milestones={proj.milestones}></AllMilestones>
         </div>
@@ -30,7 +31,7 @@ function AllMilestones({milestones})
 
     function handleClick(milestonename)
     {
-        navigate(`/milestones/${milestonename.replaceAll(' ','').toLowerCase()}`)
+        navigate(`/translator/milestones/${milestonename.replaceAll(' ','').toLowerCase()}`)
     }
     return (
         <div className='all-milestones-display'>
