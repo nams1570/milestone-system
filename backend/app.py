@@ -75,3 +75,24 @@ def handle_success_update():
     except:
         raise Exception("Issue")
         return jsonify({"success":False})
+    
+@app.delete("/delete/projects/<projectname>")
+def handle_project_deletion(projectname):
+    try:
+        with open(f"../data/{projectname}.json","r") as file:
+            projData = json.load(file)
+            print(f"projData is {projData} and type is {type(projData)}")
+            for milestone in projData["milestones"]:
+                milestonename = milestone['name'].replace(' ','').lower()
+                print(f"name is {milestonename}")
+
+                try:
+                    if os.path.exists(f"../data/milestones/{milestonename}.json"):
+                        print(f"deleting file")
+                        os.remove(f'../data/milestones/{milestonename}.json')
+                except:
+                    raise Exception(f"Can't delete milestone {milestonename} of project {projectname}")
+        os.remove(f"../data/{projectname}.json")
+        return jsonify({"success":True})
+    except:
+        return "<h1>Error 404: response not found </h1>"

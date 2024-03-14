@@ -9,6 +9,10 @@ function App() {
     <BrowserRouter>
     <div className='top-bar'>
           <div className='logo-image'></div>
+          <div className='search-bar'>
+            <div className='search-image'></div>
+            <input type="text"></input>
+          </div>
         <div className='login-and-signup'>
           <button className='login'>Log In</button>
           <button className='signup'>Sign Up</button>
