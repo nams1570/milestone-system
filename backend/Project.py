@@ -4,40 +4,35 @@ import os
 OUTPUT_DIR = "../data/"
 MILESTONES_DIR = "milestones/"
 class MilestoneConfig:
-    def __init__(self,name:str, time:int, funds:float, description:str,projName:str):
+    def __init__(self,name:str, time:int, funds:float, description:str):
         self.name = name
         self.time = time
         self.funds = funds
         self.description = description
-        self.projName = projName
 
     # NOTE: Renamed second constructor, cannot have two __init__ constructors
     def constructWithDict(self,config:dict):
         if "name" not in config or "time" not in config or "funds" not in config or "description" not in config:
             raise Exception("Incorrect format for a config")
-        self.name,self.time,self.funds,self.description,self.projName = config['name'],config['time'],config['funds'],config['description'],config['projName']
+        self.name,self.time,self.funds,self.description = config['name'],config['time'],config['funds'],config['description']
 
     def __str__(self):
-        result = f"name: {self.name}, time: {self.time}, funds: {self.funds}, description: {self.description}, projName: {self.projName}"
+        result = f"name: {self.name}, time: {self.time}, funds: {self.funds}, description: {self.description}"
         return result
 
 class Milestone:
     def __init__(self, config: MilestoneConfig):
         self.config = config
         self.isFulfilled = False
-        self.review = []
 
     def adjustDescription(self,newDesc):
         self.config.description = newDesc
-
-    def addReview(self,newReview):
-        self.review.append(newReview)
 
     def markFulfilled(self):
         self.isFulfilled = True
     
     def __str__(self):
-        result = f"{self.config}, isFulfilled: {self.isFulfilled}, review: {self.review}"
+        result = f"{self.config}, isFulfilled: {self.isFulfilled}"
         return result
     
     def post(self):
@@ -62,9 +57,7 @@ class Milestone:
             "time": self.config.time,
             "funds": self.config.funds,
             "description": self.config.description,
-            "isFulfilled": self.isFulfilled,
-            "review": self.review,
-            "projName":self.config.projName
+            "isFulfilled": self.isFulfilled
         }
     def to_json(self):
         return json.dumps(self.toDict(),indent=3)

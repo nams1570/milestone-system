@@ -14,31 +14,14 @@ export default function Milestone(){
             },)
     const isDisplay = milestone.isFulfilled;
     console.log(isDisplay)
-    const handleProjDeletion = async ()=>{
-        const result = await axios.delete(`http://localhost:5000/delete/projects/${milestone.projName}`)
-    }
     return (<div className='milestone'>
         <h1 className='new-name'>{milestone.name}</h1>
         <div>Time Allotted: {milestone.time}</div>
         <div>Payout: ${milestone.funds}</div>
         <div>{milestone.description}</div>
-        {isDisplay?<h1>Submitted! Congratulations!</h1> :<SingleFileUploader milestone={milestone}/>}
-        <div className='review-container'>
-            {isDisplay?<div>Here's what people had to say:<Reviews review={milestone.review}></Reviews></div>:<br></br>}
-        </div>
-        {isDisplay?<div className='exit-container'><div>You may now choose whether or not you would like to back out of the contract.</div> 
-        <button onClick={handleProjDeletion} className='exit-button'>Exit Contract</button></div>:<br></br>}
-        
+        {isDisplay?<h1>Submitted! Congratulations</h1> :<SingleFileUploader milestone={milestone}/>}
         </div>);
 };
-
-function Reviews({review})
-{
-    //make get request for review data on milestone
-    return (<div className='review-box'>
-        <div className='review-text'>{review}</div>
-    </div>);
-}
 
 function SingleFileUploader(milestone){
     const [file, setFile] = useState(null);
