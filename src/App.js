@@ -13,9 +13,21 @@ import LandingPage from './pages/landing';
 function App() {
   return (
     <BrowserRouter>
+<<<<<<< HEAD
         <div className='top-bar'>
             <div className='logo-image'></div>
            <Navigation />
+=======
+    <div className='top-bar'>
+          <div className='logo-image'></div>
+          <div className='search-bar'>
+            <div className='search-image'></div>
+            <input type="text"></input>
+          </div>
+        <div className='login-and-signup'>
+          <button className='login'>Log In</button>
+          <button className='signup'>Sign Up</button>
+>>>>>>> d737348362bff44f1047ee086b82a31d32263d91
         </div>
         <Routes>
             <Route path="/translator/milestones/:milestonename" element={<MilestoneTranslator/>}></Route>

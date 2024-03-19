@@ -7,21 +7,24 @@
          "time": 2,
          "funds": 20.0,
          "description": "Translate the first page of the article",
-         "isFulfilled": false
+         "isFulfilled": false,
+         "projName": "translationproject"
       },
       {
          "name": "Second Sample Translation",
          "time": 4,
          "funds": 30.0,
          "description": "Translate the first half of the article",
-         "isFulfilled": false
+         "isFulfilled": false,
+         "projName": "translationproject"
       },
       {
          "name": "Third Sample Translation",
          "time": 4,
          "funds": 50.0,
          "description": "Translate the last half of the article",
-         "isFulfilled": false
+         "isFulfilled": false,
+         "projName": "translationproject"
       }
    ]
 }
