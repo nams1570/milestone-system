@@ -1,23 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import ProjectTranslator from './pages/ProjectTranslatorView'
-import ProjectClient from './pages/ProjectClientView'
-import { Routes, Route, BrowserRouter} from "react-router-dom";
-import MilestoneTranslator from './pages/MilestoneTranslatorView';
-import MilestoneClient from './pages/MilestoneClientView';
+import Project from './pages/ProjectView'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Milestone from './pages/MilestoneView';
 import Translator from './pages/TranslatorView';
-import Client from './pages/ClientView';
-import Navigation from './pages/Nav';
-import LandingPage from './pages/landing';
-
 function App() {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
-        <div className='top-bar'>
-            <div className='logo-image'></div>
-           <Navigation />
-=======
     <div className='top-bar'>
           <div className='logo-image'></div>
           <div className='search-bar'>
@@ -27,16 +16,16 @@ function App() {
         <div className='login-and-signup'>
           <button className='login'>Log In</button>
           <button className='signup'>Sign Up</button>
->>>>>>> d737348362bff44f1047ee086b82a31d32263d91
         </div>
-        <Routes>
-            <Route path="/translator/milestones/:milestonename" element={<MilestoneTranslator/>}></Route>
-            <Route path="/translator/projects/:projectname" element ={<ProjectTranslator/>}></Route>
-            <Route path="/translator" element = {<Translator/>}></Route>
-            <Route path="/client" element = {<Client/>}></Route>
-            <Route path="/client/milestones/:milestonename" element={<MilestoneClient/>}></Route>
-            <Route path="/client/projects/:projectname" element ={<ProjectClient/>}></Route>
-            <Route path="/" element={<LandingPage/>}></Route>
+    </div>
+      <Routes>
+        <Route path="/milestones/:milestonename" element={<Milestone/>}>
+        </Route>
+        <Route path="/projects/:projectname" element ={<Project/>}>
+        </Route>
+        <Route path="/" element = {<Translator/>}>
+
+        </Route>
         </Routes>
     </BrowserRouter>
   );

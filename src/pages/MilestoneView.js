@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import './MilestoneView.css'
 //
-export default function MilestoneTranslator(){
+export default function Milestone(){
     let {milestonename} = useParams();
     const [milestone,setMilestone] = useState({})
             useEffect(()=>{
@@ -19,7 +19,6 @@ export default function MilestoneTranslator(){
     }
     return (<div className='milestone'>
         <h1 className='new-name'>{milestone.name}</h1>
-        <h3>Freelancer</h3>
         <div>Time Allotted: {milestone.time}</div>
         <div>Payout: ${milestone.funds}</div>
         <div>{milestone.description}</div>
