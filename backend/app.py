@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, jsonify
+from flask import Flask, redirect, request, Response, jsonify
 from flask_cors import CORS
 from .Project import Project
 import json
@@ -14,9 +14,29 @@ def hello_world():
 @app.post("/addproj")
 def handle_post():
     data = request.get_json()
-    print(f"data is {data} and {type(data)}")
-    newProj = Project(data)
+    newProj = Project.constructWithDict(data)
     newProj.post()
+    for milestone in newProj.milestones:
+        milestone.post()
+
+    projName = newProj.milestones[0].projName
+
+    # update project list file
+    try:
+        with open(f"../data/projlist.json","r+") as file:
+            projData = json.load(file)
+            # print(projData)
+            projData.append(projName)
+            # print(projData)
+    except:
+        return "<h1>Error 404: unable to read project list file</h1>"
+
+    try:
+        with open(f"../data/projlist.json","w") as file:
+            file.write(json.dumps(projData))
+    except:
+        return "<h1>Error 404: unable to write to project list</h1>"
+    
     return "<h1>Successfully posted</h1>"
 
 @app.get("/projects/<projectname>")
@@ -93,6 +113,23 @@ def handle_project_deletion(projectname):
                 except:
                     raise Exception(f"Can't delete milestone {milestonename} of project {projectname}")
         os.remove(f"../data/{projectname}.json")
+        
+        print("removing from project list...")
+        try:
+            with open(f"../data/projlist.json","r+") as file:
+                projData = json.load(file)
+                print(f"projData is {projData}")
+                projData.remove(projectname)  # Remove the project name from the list
+                print(f"projData after removal: {projData}")
+        except:
+            return "<h1>Error 404: unable to read project list file</h1>"
+
+        try:
+            with open(f"../data/projlist.json","w") as file:
+                file.write(json.dumps(projData))
+        except:
+            return "<h1>Error 404: unable to write to project list</h1>"
+        # redirect("http://localhost:3000/translator")
         return jsonify({"success":True})
     except:
         return "<h1>Error 404: response not found </h1>"

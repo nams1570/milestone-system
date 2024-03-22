@@ -15,7 +15,14 @@ border-bottom: 1px solid rgb(173, 172, 172);
     grid-template-columns: 1fr 1fr;
     font-size: large;
 }
-.portrait{
+.portrait-client{
+    width:120px;
+    height:120px;
+    background-image: url("../../public/profile-pic-client.jpg");
+    background-size: cover;
+}
+
+.portrait-translator{
     width:120px;
     height:120px;
     background-image: url("../../public/profile-pic-translator.png");
@@ -32,4 +39,18 @@ border-bottom: 1px solid rgb(173, 172, 172);
 }
 .proj-render-text{
     font-size: larger;
+}
+
+.create_proj_button{
+    width:100px;
+    height:50px;
+    border-radius: 20px;
+    border: transparent;
+    background-color: green;
+    color:white;
+}
+
+.create_proj_button:hover{
+    background-color: lightgreen;
+    cursor: pointer;
 }

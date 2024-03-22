@@ -26,6 +26,7 @@ class Milestone:
         self.config = config
         self.isFulfilled = False
         self.review = []
+        self.projName = config.projName
 
     def adjustDescription(self,newDesc):
         self.config.description = newDesc
@@ -50,8 +51,6 @@ class Milestone:
         file_name = self.config.name.replace(" ", "").lower()
         output_dir = OUTPUT_DIR + MILESTONES_DIR + file_name + ".json"
 
-        if os.path.exists(output_dir):
-            raise Exception("Milestone already exists")
         with open(OUTPUT_DIR + MILESTONES_DIR + file_name + ".json", 'w') as file:
             file.write(json_data)
         return json_data
@@ -71,7 +70,7 @@ class Milestone:
 
 
 class Project:
-    def __init__(self,name, allConfigs: list[MilestoneConfig], description = None):
+    def __init__(self, name, allConfigs: list[MilestoneConfig], description = None):
         if len(allConfigs) == 0:
             raise Exception("must have at least one milestone")
         self.name = name
@@ -81,16 +80,17 @@ class Project:
         for config in allConfigs:
             self.milestones.append(Milestone(config))
 
-        self.percentComplete = 0
-
-    def constructWithDict(self,project:dict):
-        if "name" not in project or "allConfigs" not in project: 
+    @classmethod
+    def constructWithDict(cls, project: dict):
+        if "name" not in project or "milestones" not in project: 
             raise Exception("Incorrect format for a Project")
-        self.name,self.isFulfilled = project['name'],False
-        self.milestones = []
-        for milestone in project['allConfigs']:
-            config = MilestoneConfig(milestone)
-            self.milestones.append(Milestone(config))
+        name = project['name']
+        description = project['description']
+        allConfigs = list()
+        for milestone in project['milestones']:
+            config = MilestoneConfig(milestone['name'],milestone['time'],milestone['funds'],milestone['description'],milestone['projName'])
+            allConfigs.append(config)
+        return cls(name, allConfigs, description)
 
     def post(self):
         """
