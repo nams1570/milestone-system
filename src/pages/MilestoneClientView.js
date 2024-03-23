@@ -19,7 +19,7 @@ export default function MilestoneClient(){
         <div>Time Allotted: {milestone.time}</div>
         <div>Payout: ${milestone.funds}</div>
         <div>{milestone.description}</div>
-        {isDisplay?<> <ReviewUploader milestonename={milestonename}></ReviewUploader><h1>Job is Completed. Check Directory for uploaded files</h1> </>:<h1>Job is incomplete.</h1>}
+        {isDisplay?<> <h1>Job is Completed. Check Directory for uploaded files</h1> <ReviewUploader milestonename={milestonename}></ReviewUploader> </>:<h1>Job is incomplete.</h1>}
         </div>);
 };
 
@@ -57,6 +57,7 @@ function ReviewUploader({milestonename})
 
     return (
         <>
+        <h1>Add or update your old review here!</h1>
         <input onChange={handleInputChange}></input>
         <button onClick={handleUpload}>Submit review</button>
         </>
