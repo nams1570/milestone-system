@@ -3,5 +3,6 @@
    "time": 4,
    "funds": 50.0,
    "description": "Translate the last half of the article",
-   "isFulfilled": false
+   "isFulfilled": false,
+   "review":""
 }

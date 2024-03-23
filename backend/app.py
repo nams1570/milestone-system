@@ -133,3 +133,22 @@ def handle_project_deletion(projectname):
         return jsonify({"success":True})
     except:
         return "<h1>Error 404: response not found </h1>"
+    
+@app.route("/review/milestones",methods=["POST"])
+def handle_review_update():
+    try:
+
+        data = request.get_json()
+        print(data)
+        if os.path.exists(f"../data/milestones/{data['name']}.json"):
+            with open(f'../data/milestones/{data['name']}.json', 'r') as file:
+                mData = json.load(file)
+                
+                mData['review'] = data['review']
+                print(f"it is now {mData}")
+            with open(f'../data/milestones/{data['name']}.json', 'w') as file:
+                file.write(json.dumps(mData))
+
+        return jsonify({"success":True})
+    except:
+        return jsonify({"success":False})
